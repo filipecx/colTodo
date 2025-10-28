@@ -1,41 +1,39 @@
 import { InvalidValueError } from "./Errors/InvalidValueError.ts";
 
 export interface TaskProps {
-    id: string;
-    title: string;
-    completed: boolean;
+  id: string;
+  title: string;
+  completed: boolean;
 }
 export class Task {
-    constructor(private taskProps: TaskProps){
-        this.validateTitle(taskProps.title)
-    }
+  constructor(private taskProps: TaskProps) {
+    this.validateTitle(taskProps.title);
+  }
 
-    get id(): string {
-        return this.taskProps.id;
-    }
+  get id(): string {
+    return this.taskProps.id;
+  }
 
-    get title(): string {
-        return this.taskProps.title;
-    }
-    
+  get title(): string {
+    return this.taskProps.title;
+  }
 
-    get completed(): boolean {
-        return this.taskProps.completed;
-    }
+  get completed(): boolean {
+    return this.taskProps.completed;
+  }
 
-    validateTitle(title: string): boolean {
-        if (title.length < 1) {
-            throw new InvalidValueError('Você deve inserir um título')
-        }
-        return true;
+  validateTitle(title: string): boolean {
+    if (title.length < 1) {
+      throw new InvalidValueError("Você deve inserir um título");
     }
-    changeTitle(newTitle: string) {
-        this.validateTitle(newTitle);
-        this.taskProps.title = newTitle;
-    }
+    return true;
+  }
+  changeTitle(newTitle: string) {
+    this.validateTitle(newTitle);
+    this.taskProps.title = newTitle;
+  }
 
-    changeStatus(): boolean {
-        return this.taskProps.completed != this.taskProps.completed;
-    }
+  changeStatus(): boolean {
+    return this.taskProps.completed != this.taskProps.completed;
+  }
 }
-
