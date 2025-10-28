@@ -1,0 +1,8 @@
+{//essa config faz importar com .ts automaticamente
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "allowImportingTsExtensions": true,
+    "noEmitOnError": true
+  }
+}
