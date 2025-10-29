@@ -21,4 +21,20 @@ export class PuserRepository implements UserRepository {
 
         return userDomain
     }
+
+    async getAll(): Promise<User[]> {
+        throw new Error("not implemented")
+    }
+
+    async getById(id: string): Promise<User> {
+        throw new Error("not implemented")
+    }
+
+    async updateUser(user: User, id: string): Promise<User> {
+        throw new Error("not implemented")
+    }
+
+    async deleteUser(id: string): Promise<boolean> {
+        throw new Error("not implemented")
+    }
 }
