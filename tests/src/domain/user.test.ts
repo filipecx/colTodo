@@ -6,8 +6,7 @@ describe('user creation tests', () => {
     const user: User = new User({
       id: '123-user-uuid',
       username: 'filipe',
-      password: '1234',
-      groups: 'aun'
+      password: '1234'
     })
     expect(user).toBeInstanceOf(User)
     expect(user.id).toMatch('123-user-uuid')
