@@ -1,11 +1,13 @@
 import express from 'express'
 import type { Request, Response } from 'express'
+import { PrismaClient } from '@prisma/client';
 
 import { createServer } from 'node:http'
 import { join } from 'node:path';
 import { Server } from 'socket.io'
 
 const app = express();
+const prisma = new PrismaClient()
 const server = createServer(app);
 const io = new Server(server);
 
