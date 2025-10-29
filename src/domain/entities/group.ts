@@ -10,6 +10,7 @@ export interface GroupProps {
 export class Group {
     constructor(private groupProps: GroupProps){
         this.validateName(groupProps.name)
+        console.log('oi')
     }
 
     get id(): string {
