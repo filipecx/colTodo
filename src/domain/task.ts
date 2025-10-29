@@ -1,8 +1,10 @@
 import { InvalidValueError } from "./Errors/InvalidValueError.ts";
+import { User } from "./user.ts";
 
 export interface TaskProps {
   id: string;
   title: string;
+  user: User;
   completed: boolean;
 }
 export class Task {
