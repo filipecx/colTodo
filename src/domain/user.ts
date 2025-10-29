@@ -4,7 +4,6 @@ export interface UserProps {
   id: string
   username: string
   password: string
-  groups: any
 }
 
 export class User {
