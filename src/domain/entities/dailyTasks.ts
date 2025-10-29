@@ -1,4 +1,4 @@
-import { InvalidValueError } from "./Errors/InvalidValueError.ts";
+import { InvalidValueError } from "../Errors/InvalidValueError.ts";
 import { Task } from "./task.ts";
 
 export enum Day {

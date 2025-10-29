@@ -1,7 +1,7 @@
 import { describe, it, expect, assert, beforeEach} from 'vitest';
-import { Task } from '../../../src/domain/task.ts';
-import { Group } from '../../../src/domain/group.ts';
-import { User } from '../../../src/domain/user.ts';
+import { Task } from '../../../src/domain/entities/task.ts';
+import { Group } from '../../../src/domain/entities/group.ts';
+import { User } from '../../../src/domain/entities/user.ts';
 
 describe('task creation test', () => {
     it('should be able to create a new group', () => {

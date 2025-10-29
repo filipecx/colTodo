@@ -1,4 +1,4 @@
-import { InvalidValueError } from "./Errors/InvalidValueError.ts";
+import { InvalidValueError } from "../Errors/InvalidValueError.ts";
 import { User } from "./user.ts";
 
 export interface TaskProps {

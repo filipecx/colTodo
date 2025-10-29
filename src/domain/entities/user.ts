@@ -1,4 +1,4 @@
-import { InvalidValueError } from "./Errors/InvalidValueError.ts"
+import { InvalidValueError } from "../Errors/InvalidValueError.ts"
 
 export interface UserProps {
   id: string

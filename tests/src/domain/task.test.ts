@@ -1,5 +1,5 @@
 import { describe, it, expect, assert, beforeEach} from 'vitest';
-import { Task } from '../../../src/domain/task.ts';
+import { Task } from '../../../src/domain/entities/task.ts';
 
 describe('task creation test', () => {
     it('should be able to create a new task', () => {

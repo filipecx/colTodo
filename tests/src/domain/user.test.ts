@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { User } from "../../../src/domain/user.ts";
+import { User } from "../../../src/domain/entities/user.ts";
 
 describe('user creation tests', () => {
   it('should be able to create a new user', () => {
