@@ -1,7 +1,7 @@
 import { InvalidValueError } from "./Errors/InvalidValueError.ts";
 import { Task } from "./task.ts";
 
-enum Day {
+export enum Day {
   segunda = "segunda-feira",
   terca = "terça-feira",
   quarta = "quarta-feira",
