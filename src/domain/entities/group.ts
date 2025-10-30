@@ -38,4 +38,11 @@ export class Group {
         }
         
     }
+
+    addUser(newUser: User): User[] {
+        if (newUser) {
+            this.groupProps.users.push(newUser)
+            return this.users
+        }
+    }
 }
