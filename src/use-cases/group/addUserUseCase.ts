@@ -1,5 +1,5 @@
+import { Group } from "../../domain/entities/group.ts";
 import { InvalidValueError } from "../../domain/Errors/InvalidValueError.ts";
-import { GroupRepository } from "../../domain/interfaces/groupRepository.ts";
 import { GetUserByIdUseCase } from "../user/getUserByIdUseCase.ts";
 import { GetGroupByIdUseCase } from "./getGroupByIdUseCase.ts";
 import { UpdateGroupUseCase } from "./updateGroupUseCase.ts";
@@ -11,7 +11,7 @@ export class AddUserUseCase {
         private getUser: GetUserByIdUseCase
     ){}
 
-    async execute(groupId: string, userId: string) {
+    async execute(groupId: string, userId: string): Promise<Group> {
         if (groupId == '' || userId == '') {
             throw new InvalidValueError('Você precisa inserir id de um grupo e de um usuário')
         }
@@ -20,6 +20,6 @@ export class AddUserUseCase {
 
         group.addUser(user)
 
-        await this.updateGroup.execute(group, groupId)
+        return await this.updateGroup.execute(group, groupId)
     }
 }
