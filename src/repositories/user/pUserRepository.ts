@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { UserRepository } from "../../domain/interfaces/userRepository.ts";
 import { User } from "../../domain/entities/user.ts";
+import { UserMapper } from "../mappers/userMapper.ts";
 
 export class PuserRepository implements UserRepository {
     constructor(private prisma: PrismaClient){}
@@ -13,28 +14,34 @@ export class PuserRepository implements UserRepository {
             }
         })
 
-        const userDomain: User = new User({
-            id: persistedUser.id,
-            username: persistedUser.username,
-            password: persistedUser.password
-        })
-
-        return userDomain
+        return UserMapper.toDomain(persistedUser)
     }
 
     async getAll(): Promise<User[]> {
-        throw new Error("not implemented")
+        return UserMapper.toDomainList(await this.prisma.users.findMany())
     }
 
     async getById(id: string): Promise<User> {
-        throw new Error("not implemented")
+        return UserMapper.toDomain(await this.prisma.users.findUnique({where: {id: id}}))
     }
 
     async updateUser(user: User, id: string): Promise<User> {
-        throw new Error("not implemented")
+        return UserMapper.toDomain(await this.prisma.users.update({
+            where: {id: id}, 
+            data: {user}
+    }))
     }
 
     async deleteUser(id: string): Promise<boolean> {
-        throw new Error("not implemented")
+        const success = this.prisma.users.deleteMany({
+            where: {
+                id: id
+            }
+        })
+        if (success > 0) {
+            return true
+        }
+
+        return false
     }
 }
