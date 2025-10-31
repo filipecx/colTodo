@@ -16,8 +16,9 @@ export class PgrouprRepository implements GroupRepository {
 
         return GroupMapper.toDomain(persistedGroup)
     }
-    getAll(): Promise<Group[]> {
-        throw new Error("Method not implemented.");
+    async getAll(): Promise<Group[]> {
+        return await this.prisma.groups.findAll()
+        
     }
     async getById(id: string): Promise<Group> {
         const persistedGroup = await this.prisma.groups.findUnique({
@@ -35,8 +36,16 @@ export class PgrouprRepository implements GroupRepository {
         })
         return updatedGroup
     }
-    delete(id: string): Promise<boolean> {
-        throw new Error("Method not implemented.");
+    async delete(id: string): Promise<boolean> {
+        const success = await this.prisma.groups.deleteMany({
+            where: {
+                id: id
+            }
+        })
+        if (success > 0) {
+            return true
+        }
+
+        return false
     }
-    
 }

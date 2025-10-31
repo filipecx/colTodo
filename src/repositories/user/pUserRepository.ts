@@ -33,7 +33,7 @@ export class PuserRepository implements UserRepository {
     }
 
     async deleteUser(id: string): Promise<boolean> {
-        const success = this.prisma.users.deleteMany({
+        const success = await this.prisma.users.deleteMany({
             where: {
                 id: id
             }
