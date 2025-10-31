@@ -17,4 +17,38 @@ model Users {
   id String @id @default(uuid())
   username String
   password String
+  groups Groups[]
+  tasks Tasks[]
+}
+
+model Groups {
+  id String @id @default(uuid())
+  name String
+  liveBoard LiveBoards?
+  users Users[] 
+}
+
+model Tasks {
+  id String @id @default(uuid())
+  title String
+  userId String @map("user_id")
+  user Users @relation(fields: [userId], references: [id])
+  completed Boolean
+  dailyTasks DailyTasks[]
+}
+
+model DailyTasks {
+  id String @id @default(uuid())
+  day String
+  tasksId String @map("tasks_id")
+  tasks Tasks @relation(fields: [tasksId], references: [id])
+  liveBoards LiveBoards[]
+}
+
+model LiveBoards {
+  id String @id @default(uuid())
+  name String
+  groupId String @unique @map("user_id")
+  group Groups @relation(fields: [groupId], references: [id])
+  dailyTasksIds DailyTasks[]
 }
