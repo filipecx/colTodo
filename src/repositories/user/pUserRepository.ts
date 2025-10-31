@@ -28,7 +28,10 @@ export class PuserRepository implements UserRepository {
     async updateUser(user: User, id: string): Promise<User> {
         return UserMapper.toDomain(await this.prisma.users.update({
             where: {id: id}, 
-            data: {user}
+            data: {
+                username: user.username,
+                password: user.password
+            }
     }))
     }
 
@@ -38,7 +41,7 @@ export class PuserRepository implements UserRepository {
                 id: id
             }
         })
-        if (success > 0) {
+        if (success.count > 0) {
             return true
         }
 

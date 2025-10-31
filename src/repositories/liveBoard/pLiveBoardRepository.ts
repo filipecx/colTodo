@@ -17,7 +17,7 @@ export class PliveBoardRepository implements LiveBoardRepository {
         return LiveBoardMapper.toDomain(persistedBoard)
     }
     async getAll(): Promise<LiveBoard[]> {
-        return await this.prisma.liveBoards.findAll()
+        return await this.prisma.liveBoards.findMany()
         
     }
     async getById(id: string): Promise<LiveBoard> {
@@ -32,7 +32,10 @@ export class PliveBoardRepository implements LiveBoardRepository {
         const updatedBoard = await this.prisma.liveBoards.update({
             where: {
                 id: id
-            }, data: {liveBoard}
+            }, data: {
+                group: liveBoard.group,
+                dailyTasks: liveBoard.dailyTasks
+            }
         })
         return updatedBoard
     }
@@ -42,7 +45,7 @@ export class PliveBoardRepository implements LiveBoardRepository {
                 id: id
             }
         })
-        if (success > 0) {
+        if (success.count > 0) {
             return true
         }
 

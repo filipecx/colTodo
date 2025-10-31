@@ -32,7 +32,10 @@ export class PgrouprRepository implements GroupRepository {
         const updatedGroup = await this.prisma.groups.update({
             where: {
                 id: id
-            }, data: {group}
+            }, data: {
+                name: group.name,
+                users: group.users
+            }
         })
         return updatedGroup
     }
@@ -42,7 +45,7 @@ export class PgrouprRepository implements GroupRepository {
                 id: id
             }
         })
-        if (success > 0) {
+        if (success.count > 0) {
             return true
         }
 
