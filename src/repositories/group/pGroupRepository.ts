@@ -6,8 +6,15 @@ import { GroupMapper } from "../mappers/groupMapper.ts";
 export class PgrouprRepository implements GroupRepository {
     constructor(private prisma: PrismaClient){}
 
-    create(group: Group): Promise<Group> {
-        throw new Error("Method not implemented.");
+    async create(group: Group): Promise<Group> {
+        const persistedGroup = await this.prisma.users.create({
+            data: {
+                name: group.name,
+                users: group.users
+            }
+        })
+
+        return GroupMapper.toDomain(persistedGroup)
     }
     getAll(): Promise<Group[]> {
         throw new Error("Method not implemented.");
