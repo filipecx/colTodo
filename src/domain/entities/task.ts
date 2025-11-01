@@ -20,6 +20,10 @@ export class Task {
     return this.taskProps.title;
   }
 
+  get user(): User {
+    return this.taskProps.user;
+  }
+
   get completed(): boolean {
     return this.taskProps.completed;
   }

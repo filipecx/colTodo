@@ -23,14 +23,14 @@ export class PgrouprRepository implements GroupRepository {
         const groups: any[] = await this.prisma.groups.findMany()
         return GroupMapper.toDomainList(groups)
     }
-    async getById(id: string): Promise<Group> {
+    async getById(id: string): Promise<Group | null> {
         const persistedGroup = await this.prisma.groups.findUnique({
             where: {
                 id: id
             },
             include: {users: true}
         })
-        return persistedGroup ? GroupMapper.toDomain(persistedGroup)
+        return persistedGroup ? GroupMapper.toDomain(persistedGroup): null
     }
     async update(group: Group, id: string): Promise<Group> {
         const updatedGroup = await this.prisma.groups.update({

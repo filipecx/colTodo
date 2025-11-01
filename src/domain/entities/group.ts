@@ -47,6 +47,7 @@ export class Group {
     }
 
     removeUser(userId: string): User[] {
-        return this.groupProps.users.filter((user) => user.id == userId)
+        
+        return this.groupProps.users =  this.groupProps.users.filter((user) => user.id == userId)
     }
 }
