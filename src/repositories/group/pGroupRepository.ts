@@ -7,26 +7,30 @@ export class PgrouprRepository implements GroupRepository {
     constructor(private prisma: PrismaClient){}
 
     async create(group: Group): Promise<Group> {
-        const persistedGroup = await this.prisma.users.create({
+        const persistedGroup = await this.prisma.groups.create({
             data: {
                 name: group.name,
-                users: group.users
-            }
+                users: {
+                    connect: group.users.map((user) => ({id: user.id}))
+                }
+            },
+            include: {users: true}
         })
 
         return GroupMapper.toDomain(persistedGroup)
     }
     async getAll(): Promise<Group[]> {
-        return await this.prisma.groups.findAll()
-        
+        const groups: any[] = await this.prisma.groups.findMany()
+        return GroupMapper.toDomainList(groups)
     }
     async getById(id: string): Promise<Group> {
         const persistedGroup = await this.prisma.groups.findUnique({
             where: {
                 id: id
-            }
+            },
+            include: {users: true}
         })
-        return GroupMapper.toDomain(persistedGroup)
+        return persistedGroup ? GroupMapper.toDomain(persistedGroup)
     }
     async update(group: Group, id: string): Promise<Group> {
         const updatedGroup = await this.prisma.groups.update({
@@ -34,10 +38,14 @@ export class PgrouprRepository implements GroupRepository {
                 id: id
             }, data: {
                 name: group.name,
-                users: group.users
-            }
+                users: {
+                    connect: group.users.map((user) => ({id: user.id}))
+                }
+            },
+            include: {users: true}
         })
-        return updatedGroup
+        const response = GroupMapper.toDomain(updatedGroup)
+        return response
     }
     async delete(id: string): Promise<boolean> {
         const success = await this.prisma.groups.deleteMany({
