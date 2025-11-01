@@ -11,10 +11,10 @@ export class DeleteDailyUseCase {
         if (id == ''){
             throw new InvalidValueError('Nenhum id fornecido')
         }
-        if(this.useCase.execute(id)) {
-            this.repository.delete(id)
+      
+    
+            await this.repository.delete(id)
             return true
-        }
-        return false
+       
     }
 }

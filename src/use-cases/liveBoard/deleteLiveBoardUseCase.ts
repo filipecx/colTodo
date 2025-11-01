@@ -15,9 +15,8 @@ export class DeleteLiveBoardUseCase {
         if(!this.getById.execute(id)) {
             return false
         }
-        if (this.repository.delete(id)) {
+        await this.repository.delete(id)
             return true
-        }
-        return false
+        
     }
 }

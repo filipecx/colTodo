@@ -9,10 +9,10 @@ export class DeleteGroupUseCase {
             throw new InvalidValueError('Nenhum id fornecido para deletar grupo')
         }
 
-        if (this.repository.delete(id)) {
+        await this.repository.delete(id)
             return true
 
-        }
-        return false
+        
+        
     }
 }
