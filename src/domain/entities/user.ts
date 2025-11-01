@@ -1,7 +1,7 @@
 import { InvalidValueError } from "../Errors/InvalidValueError.ts"
 
 export interface UserProps {
-  id: string
+  id?: string
   username: string
   password: string
 }
@@ -13,7 +13,7 @@ export class User {
   }
 
   get id(): string {
-    return this.userProps.id
+    return this.userProps.id!
   }
 
   get username(): string {

@@ -28,17 +28,20 @@ export class PuserRepository implements UserRepository {
     async updateUser(user: User, id: string): Promise<User> {
         return UserMapper.toDomain(await this.prisma.users.update({
             where: {id: id}, 
-            data: {user}
+            data: {
+                username: user.username,
+                password: user.password
+            }
     }))
     }
 
     async deleteUser(id: string): Promise<boolean> {
-        const success = this.prisma.users.deleteMany({
+        const success = await this.prisma.users.deleteMany({
             where: {
                 id: id
             }
         })
-        if (success > 0) {
+        if (success.count > 0) {
             return true
         }
 

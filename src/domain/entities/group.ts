@@ -8,7 +8,7 @@ export interface GroupProps {
 }
 
 export class Group {
-    constructor(private groupProps: GroupProps){
+    constructor(private groupProps: GroupProps) {
         this.validateName(groupProps.name)
         console.log('oi')
     }
@@ -36,14 +36,14 @@ export class Group {
         if (this.validateName(newName)) {
             this.groupProps.name = newName
         }
-        
+
     }
 
     addUser(newUser: User): User[] {
-        if (newUser) {
-            this.groupProps.users.push(newUser)
-            return this.users
-        }
+
+        this.groupProps.users.push(newUser)
+        return this.users
+
     }
 
     removeUser(userId: string): User[] {
