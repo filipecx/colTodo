@@ -7,18 +7,18 @@ import { Server } from 'socket.io'
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server);
 
 import userRouter from './routes/userRoutes.ts'
+import { SocketTodo } from './socket/socket.ts';
 
 app.use(express.json())
 app.use(cors())
-/*
+
 
 app.get('/', (req: Request, res: Response) => {
     res.sendFile('/home/filipe/Documents/nodeProjects/colTodo/index.html')
 })
-
+/*
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.on('chat message', (msg) => {
@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
     });
 });
 */
-
+const socketManager = new SocketTodo(server)
 
 app.use('/api/v1', userRouter)
 

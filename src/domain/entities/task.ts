@@ -4,7 +4,7 @@ import { User } from "./user.ts";
 export interface TaskProps {
   id: string;
   title: string;
-  user: User;
+  userId: string;
   completed: boolean;
 }
 export class Task {
@@ -20,8 +20,8 @@ export class Task {
     return this.taskProps.title;
   }
 
-  get user(): User {
-    return this.taskProps.user;
+  get user(): string {
+    return this.taskProps.userId;
   }
 
   get completed(): boolean {

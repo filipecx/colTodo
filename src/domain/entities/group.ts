@@ -4,7 +4,7 @@ import { User } from "./user.ts";
 export interface GroupProps {
     id: string,
     name: string,
-    users: User[]
+    users_id: string[]
 }
 
 export class Group {
@@ -21,8 +21,8 @@ export class Group {
         return this.groupProps.name
     }
 
-    get users(): User[] {
-        return this.groupProps.users
+    get users(): string[] {
+        return this.groupProps.users_id
     }
 
     validateName(name: string): boolean {
@@ -39,15 +39,15 @@ export class Group {
 
     }
 
-    addUser(newUser: User): User[] {
+    addUser(newUserId: string): string[] {
 
-        this.groupProps.users.push(newUser)
+        this.groupProps.users_id.push(newUserId)
         return this.users
 
     }
 
-    removeUser(userId: string): User[] {
+    removeUser(userId: string): string[] {
         
-        return this.groupProps.users =  this.groupProps.users.filter((user) => user.id == userId)
+        return this.groupProps.users_id =  this.groupProps.users_id.filter((user) => user == userId)
     }
 }

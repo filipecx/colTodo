@@ -3,8 +3,8 @@ import { Group } from "./group.ts";
 
 export interface LiveBoardProps {
     id: string,
-    group: Group,
-    dailyTasks: DailyTasks[]
+    group_id: string,
+    dailyTasks: string[]
 }
 
 export class LiveBoard {
@@ -14,11 +14,11 @@ export class LiveBoard {
         return this.liveBoardProps.id
     }
 
-    get group(): Group {
-        return this.liveBoardProps.group
+    get group(): string {
+        return this.liveBoardProps.group_id
     }
 
-    get dailyTasks(): DailyTasks[] {
+    get dailyTasks(): string[] {
         return this.dailyTasks
     }
 }
